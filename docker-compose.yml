@@ -1,0 +1,54 @@
+﻿version: '3.8'
+
+services:
+  authentication:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: authentication
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "60601:60601"
+    environment:
+        POSTGRES_USER: user
+        POSTGRES_PASSWORD: password
+        POSTGRES_URL: jdbc:postgresql://postgres:5432/authentication
+        ENV: dev
+        KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+        KAFKA_CONSUMER_GROUP_ID: auth
+    networks:
+      - shared_network
+
+  postgres:
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all
+    image: postgres:12.2-alpine
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: authentication
+    ports:
+      - "5432:5432"
+    networks:
+      - shared_network
+
+
+
+
+
+#  authentication:
+#    build: .
+#    container_name: service1
+#    environment:
+#      KAFKA_BROKER: kafka:9092
+#      REQUEST_TOPIC: request_topic
+#      RESPONSE_TOPIC: response_topic
+#    networks:
+#      - shared_network
+#
+networks:
+  shared_network:
+    external: true

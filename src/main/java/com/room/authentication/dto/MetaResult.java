@@ -13,10 +13,7 @@ public record MetaResult(
         @JsonProperty("message_code") String messageCode) {
 
 
-//    public static MetaResult create(String developerMessage, String messageCode, List<String> errors, boolean isProd) {
-//        String devMessage = isProd ? "" : developerMessage;
-//        return new MetaResult(errors,devMessage, messageCode);
-//    }
+
 
 }
 

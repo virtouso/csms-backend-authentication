@@ -3,7 +3,6 @@ package com.room.authentication.util;
 import com.room.authentication.config.AppConfig;
 import com.room.authentication.dto.MetaResult;
 import com.room.authentication.dto.MetaResultTyped;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

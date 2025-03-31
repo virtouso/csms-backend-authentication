@@ -15,9 +15,6 @@ public record MetaResultTyped<T> (
         @JsonProperty("message_code") String messageCode) {
 
 
-//    public static <T> MetaResultTyped<T> create(T result, String developerMessage, String messageCode, boolean isProd, List<String> errors) {
-//        String devMessage = isProd ? "" : developerMessage;
-//        return new MetaResultTyped<>(result,errors, devMessage, messageCode);
-//    }
+
 
 }
